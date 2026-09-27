@@ -24,16 +24,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;ove
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px}
-
-/* Custom cursor */
-/* Custom cursor — Click Sparkle */
 .cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--purple2);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s,background 0.3s;box-shadow:0 0 8px var(--purple2)}
 .cursor.clicking{transform:translate(-50%,-50%) scale(0.5);background:var(--accent)}
 .sparkle{position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);animation:sparkle-anim 0.6s ease forwards}
 @keyframes sparkle-anim{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.5)}}
 .spark{position:fixed;pointer-events:none;z-index:9997;width:5px;height:5px;border-radius:50%;animation:spark-fly 0.6s ease forwards}
 @keyframes spark-fly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
-/* Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background 0.3s}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,var(--purple2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
@@ -52,8 +48,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:fl
 .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1.5rem 2rem;z-index:99}
 .mobile-menu.open{display:flex;flex-direction:column;gap:1rem}
 .mobile-menu a{color:var(--text2);text-decoration:none;font-size:1rem;padding:0.5rem 0;border-bottom:1px solid var(--border)}
-
-/* Hero */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:6rem 2rem 4rem;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.15;animation:float 8s ease-in-out infinite}
@@ -84,14 +78,10 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .stat{text-align:center;animation:countup 2s ease forwards}
 .stat-num{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:700;color:var(--purple2)}
 .stat-label{font-size:0.75rem;color:var(--text3);margin-top:0.2rem}
-
-/* Sections */
 .section-wrap{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .section-tag{font-size:0.75rem;color:var(--purple2);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem}
 .section-title{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;margin-bottom:1rem}
 .section-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--purple),var(--accent));border-radius:2px;margin-bottom:3rem}
-
-/* About */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .about-text p{color:var(--text2);line-height:1.8;margin-bottom:1rem;font-size:0.95rem}
 .about-cards{display:grid;gap:1rem}
@@ -105,8 +95,6 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .strength-card:hover{border-color:rgba(124,111,205,0.4)}
 .strength-card h4{font-size:0.88rem;font-weight:500;margin-bottom:0.4rem;color:var(--purple3)}
 .strength-card p{font-size:0.78rem;color:var(--text3);line-height:1.6}
-
-/* Skills */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
 .skill-card{background:var(--card);border:1px solid var(--border);border-radius:0.75rem;padding:1.5rem;transition:border-color 0.3s}
 .skill-card:hover{border-color:rgba(124,111,205,0.4)}
@@ -121,8 +109,6 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .skill-bar-header{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--text2)}
 .skill-bar-track{height:5px;background:rgba(124,111,205,0.15);border-radius:3px;overflow:hidden}
 .skill-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--purple),var(--accent));width:0;transition:width 1.2s ease}
-
-/* Projects */
 .filter-btns{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem}
 .filter-btn{background:var(--card);border:1px solid var(--border);color:var(--text2);padding:0.5rem 1.25rem;border-radius:2rem;font-size:0.82rem;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif}
 .filter-btn.active,.filter-btn:hover{background:rgba(124,111,205,0.15);border-color:var(--purple2);color:var(--purple2)}
@@ -141,8 +127,6 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .tool-tag{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text3);padding:0.2rem 0.6rem;border-radius:0.3rem;font-size:0.72rem}
 .project-link{color:var(--purple2);font-size:0.8rem;text-decoration:none;display:flex;align-items:center;gap:0.3rem;transition:color 0.3s}
 .project-link:hover{color:var(--purple3)}
-
-/* Experience */
 .exp-timeline{position:relative;padding-left:2rem}
 .exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--purple),transparent)}
 .exp-item{position:relative;margin-bottom:2.5rem}
@@ -154,8 +138,6 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .exp-company{font-size:0.85rem;color:var(--purple2);margin-top:0.2rem}
 .exp-date{font-size:0.78rem;color:var(--text3);background:rgba(124,111,205,0.1);padding:0.25rem 0.75rem;border-radius:2rem;white-space:nowrap}
 .exp-card p{font-size:0.85rem;color:var(--text2);line-height:1.7}
-
-/* Education */
 .edu-grid{display:grid;gap:1.25rem}
 .edu-card{background:var(--card);border:1px solid var(--border);border-radius:0.75rem;padding:1.5rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;transition:border-color 0.3s}
 .edu-card:hover{border-color:rgba(124,111,205,0.4)}
@@ -165,16 +147,12 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .edu-score{text-align:right}
 .edu-score-num{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--purple2)}
 .edu-score-label{font-size:0.72rem;color:var(--text3);margin-top:0.2rem}
-
-/* Certifications */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
 .cert-card{background:var(--card);border:1px solid var(--border);border-radius:0.75rem;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.3s,transform 0.3s}
 .cert-card:hover{border-color:rgba(124,111,205,0.4);transform:translateY(-2px)}
 .cert-icon{width:42px;height:42px;border-radius:0.6rem;background:rgba(124,111,205,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .cert-card h4{font-size:0.88rem;font-weight:500;margin-bottom:0.3rem;line-height:1.4}
 .cert-card p{font-size:0.78rem;color:var(--text3)}
-
-/* Languages */
 .lang-grid{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem}
 .lang-card{background:var(--card);border:1px solid var(--border);border-radius:0.75rem;padding:1rem 1.5rem;text-align:center;min-width:140px}
 .lang-name{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:600;margin-bottom:0.25rem}
@@ -182,8 +160,6 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .lang-dots{display:flex;gap:4px;justify-content:center;margin-top:0.5rem}
 .lang-dot{width:8px;height:8px;border-radius:50%;background:rgba(124,111,205,0.2)}
 .lang-dot.filled{background:var(--purple2)}
-
-/* Contact */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .contact-text p{color:var(--text2);line-height:1.8;font-size:0.95rem;margin-bottom:2rem}
 .contact-links{display:flex;flex-direction:column;gap:1rem}
@@ -194,24 +170,15 @@ h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);fo
 .contact-link p{font-size:0.78rem;color:var(--text3)}
 .copy-btn{margin-left:auto;background:rgba(124,111,205,0.1);border:1px solid rgba(124,111,205,0.2);color:var(--purple3);padding:0.25rem 0.6rem;border-radius:0.3rem;font-size:0.72rem;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif}
 .copy-btn:hover{background:rgba(124,111,205,0.2)}
-
-/* Back to top */
 .back-to-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--violet));color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:all 0.3s;z-index:90;box-shadow:0 4px 20px rgba(109,40,217,0.4)}
 .back-to-top.visible{opacity:1;transform:translateY(0)}
 .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(109,40,217,0.5)}
-
-/* Footer */
 footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:0.82rem}
 footer span{color:var(--purple2)}
-
-/* Animations */
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s,transform 0.7s}
 .fade-in.visible{opacity:1;transform:translateY(0)}
-
-/* Toast */
 .toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.6rem 1.25rem;border-radius:2rem;font-size:0.82rem;opacity:0;transition:all 0.3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 @media(max-width:768px){
 .nav-links{display:none}
 .hamburger{display:flex}
@@ -221,13 +188,129 @@ footer span{color:var(--purple2)}
 .hero-stats{gap:1.25rem}
 }
 </style>
+ 
+<!-- ================= RAG CHAT WIDGET — HEAD CSS ================= -->
+<style>
+  :root {
+    --rag-purple: #7c4dff;
+    --rag-purple-dark: #5e35b1;
+    --rag-bg-dark: #1a1625;
+    --rag-bg-light: #ffffff;
+    --rag-text-dark: #ece8f7;
+    --rag-text-light: #2d2140;
+    --rag-bubble-dark: #2a2340;
+    --rag-bubble-light: #ede7f6;
+  }
+  #rag-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 24px;
+    width: 66px;
+    height: 74px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+  #rag-fab:hover {
+    transform: scale(1.08) translateY(-2px);
+  }
+ 
+  #rag-fab svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 14px rgba(124, 77, 255, 0.5));
+    animation: rag-float 2.8s ease-in-out infinite;
+  }
+ 
+  @keyframes rag-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-9px); }
+  }
+ 
+  #rag-fab .rag-pulse {
+    position: absolute;
+    bottom: 4px;
+    width: 46px;
+    height: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: var(--rag-purple);
+    opacity: 0.35;
+    filter: blur(6px);
+    animation: rag-pulse-anim 2.2s infinite;
+    z-index: -1;
+  }
+ 
+  @keyframes rag-pulse-anim {
+    0%, 100% { opacity: 0.35; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.15; transform: translateX(-50%) scale(1.3); }
+  }
+  #rag-chat-panel {
+    position: fixed; bottom: 108px; right: 24px; width: 360px; max-width: 90vw;
+    height: 500px; max-height: 75vh;
+    background: var(--rag-bg-dark); border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    display: none; flex-direction: column; overflow: hidden; z-index: 9999;
+    border: 1px solid rgba(124, 77, 255, 0.25);
+    font-family: 'DM Sans', 'Segoe UI', Arial, sans-serif;
+  }
+  #rag-chat-panel.rag-open { display: flex; animation: rag-slide-up 0.25s ease; }
+  @keyframes rag-slide-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .rag-header {
+    background: linear-gradient(135deg, var(--rag-purple), var(--rag-purple-dark));
+    color: white; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .rag-header .rag-title { display: flex; align-items: center; gap: 10px; }
+  .rag-header .rag-avatar {
+    width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px;
+  }
+  .rag-header h3 { margin: 0; font-size: 14px; }
+  .rag-header p { margin: 1px 0 0; font-size: 11px; opacity: 0.85; }
+  .rag-close { background: none; border: none; color: white; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px; opacity: 0.85; }
+  .rag-close:hover { opacity: 1; }
+  .rag-messages { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: var(--rag-bg-dark); }
+  .rag-msg { max-width: 82%; padding: 9px 13px; border-radius: 13px; font-size: 13px; line-height: 1.45; white-space: pre-wrap; word-wrap: break-word; }
+  .rag-msg.rag-bot { background: var(--rag-bubble-dark); color: var(--rag-text-dark); align-self: flex-start; border-bottom-left-radius: 3px; }
+  .rag-msg.rag-user { background: var(--rag-purple); color: white; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .rag-msg.rag-typing { background: var(--rag-bubble-dark); color: #a89cc8; align-self: flex-start; font-style: italic; }
+  .rag-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; background: var(--rag-bg-dark); }
+  .rag-chip { background: rgba(124, 77, 255, 0.12); border: 1px solid rgba(124, 77, 255, 0.4); color: #c3b3ff; padding: 5px 11px; border-radius: 12px; font-size: 11px; cursor: pointer; transition: background 0.2s; }
+  .rag-chip:hover { background: rgba(124, 77, 255, 0.25); }
+  .rag-input-row { display: flex; padding: 10px; border-top: 1px solid rgba(124, 77, 255, 0.2); background: var(--rag-bg-dark); gap: 8px; }
+  .rag-input-row input { flex: 1; padding: 9px 13px; border-radius: 18px; border: 1px solid rgba(124, 77, 255, 0.3); outline: none; font-size: 13px; background: var(--rag-bubble-dark); color: var(--rag-text-dark); }
+  .rag-input-row input::placeholder { color: #8b7fae; }
+  .rag-input-row input:focus { border-color: var(--rag-purple); }
+  .rag-input-row button { background: var(--rag-purple); color: white; border: none; border-radius: 18px; padding: 0 16px; font-size: 13px; cursor: pointer; transition: background 0.2s; }
+  .rag-input-row button:hover { background: var(--rag-purple-dark); }
+  .rag-input-row button:disabled { background: #4a3d6b; cursor: not-allowed; }
+  html[data-theme="light"] #rag-chat-panel { background: var(--rag-bg-light); border-color: rgba(124, 77, 255, 0.15); }
+  html[data-theme="light"] .rag-messages,
+  html[data-theme="light"] .rag-suggestions,
+  html[data-theme="light"] .rag-input-row { background: var(--rag-bg-light); }
+  html[data-theme="light"] .rag-msg.rag-bot,
+  html[data-theme="light"] .rag-msg.rag-typing { background: var(--rag-bubble-light); color: var(--rag-text-light); }
+  html[data-theme="light"] .rag-input-row input { background: #f4f2fb; color: var(--rag-text-light); border-color: #d8cdf7; }
+  html[data-theme="light"] .rag-input-row input::placeholder { color: #9a8fc0; }
+</style>
+<!-- ================= END RAG CHAT WIDGET HEAD CSS ================= -->
+ 
 </head>
 <body>
-
+ 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursor-follower"></div>
 <div class="toast" id="toast">Email copied!</div>
-
+ 
 <nav id="navbar">
   <div class="nav-logo">SM</div>
   <ul class="nav-links" id="nav-links">
@@ -245,7 +328,7 @@ footer span{color:var(--purple2)}
     </button>
   </div>
 </nav>
-
+ 
 <div class="mobile-menu" id="mobile-menu">
   <a href="#about" class="mob-link">About</a>
   <a href="#skills" class="mob-link">Skills</a>
@@ -254,8 +337,7 @@ footer span{color:var(--purple2)}
   <a href="#education" class="mob-link">Education</a>
   <a href="#contact" class="mob-link">Contact</a>
 </div>
-
-<!-- HERO -->
+ 
 <div class="hero" id="home">
   <div class="hero-bg">
     <div class="orb orb1"></div>
@@ -284,8 +366,7 @@ footer span{color:var(--purple2)}
     </div>
   </div>
 </div>
-
-<!-- ABOUT -->
+ 
 <div class="section-wrap" id="about">
   <p class="section-tag">Who I Am</p>
   <h2 class="section-title">About Me</h2>
@@ -310,8 +391,7 @@ footer span{color:var(--purple2)}
     <div class="strength-card"><h4>🎯 Precision Under Pressure</h4><p>Scored 100% in Adobe AI course and secured 1st Prize in a competitive inter-college poster event.</p></div>
   </div>
 </div>
-
-<!-- SKILLS -->
+ 
 <div class="section-wrap" id="skills">
   <p class="section-tag">What I Know</p>
   <h2 class="section-title">Technical Skills</h2>
@@ -373,8 +453,7 @@ footer span{color:var(--purple2)}
     </div>
   </div>
 </div>
-
-<!-- PROJECTS -->
+ 
 <div class="section-wrap" id="projects">
   <p class="section-tag">What I've Built</p>
   <h2 class="section-title">Projects</h2>
@@ -387,40 +466,24 @@ footer span{color:var(--purple2)}
   </div>
   <div class="projects-grid" id="projects-grid">
     <div class="project-card fade-in" data-category="prodigy"><div class="project-header"><span class="project-badge badge-prodigy">Prodigy InfoTech</span></div><h3>Population Distribution Visualization</h3><p>Bar chart and histogram to visualize population distribution using World Bank data across 200+ countries.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">Matplotlib</span><span class="tool-tag">Seaborn</span></div><a href="https://github.com/madhurisama/PRODIGY_DS_01" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="prodigy"><div class="project-header"><span class="project-badge badge-prodigy">Prodigy InfoTech</span></div><h3>Titanic EDA & Data Cleaning</h3><p>Complete exploratory data analysis on Titanic dataset uncovering survival patterns by gender, class, and age.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">Seaborn</span><span class="tool-tag">EDA</span></div><a href="https://github.com/madhurisama/PRODIGY_DS_02" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="prodigy"><div class="project-header"><span class="project-badge badge-prodigy">Prodigy InfoTech</span></div><h3>Decision Tree Classifier</h3><p>Predicted customer purchase behavior using Bank Marketing dataset with Full and Pruned Decision Trees.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Scikit-learn</span><span class="tool-tag">Decision Tree</span><span class="tool-tag">ROC-AUC</span></div><a href="https://github.com/madhurisama/PRODIGY_DS_03" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="prodigy"><div class="project-header"><span class="project-badge badge-prodigy">Prodigy InfoTech</span></div><h3>Twitter Sentiment Analysis</h3><p>Analyzed social media sentiment patterns using NLP and ML models to understand public opinion on brands.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">NLTK</span><span class="tool-tag">TF-IDF</span><span class="tool-tag">SVM</span></div><a href="https://github.com/madhurisama/PRODIGY_DS_04" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="prodigy"><div class="project-header"><span class="project-badge badge-prodigy">Prodigy InfoTech</span></div><h3>US Traffic Accident Analysis</h3><p>Identified accident patterns related to weather, road conditions, and time of day using 1M+ records.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">Matplotlib</span><span class="tool-tag">Seaborn</span></div><a href="https://github.com/madhurisama/PRODIGY_DS_05" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Netflix Data Cleaning</h3><p>Cleaned and standardized Netflix dataset handling missing values, duplicates, outliers, and datetime features.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">Missingno</span><span class="tool-tag">EDA</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Retail Sales EDA</h3><p>Time series and customer analysis on retail sales data revealing seasonal trends and purchasing patterns.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">Matplotlib</span><span class="tool-tag">Time Series</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Customer Segmentation</h3><p>Segmented mall customers into 5 distinct groups using K-Means clustering on income and spending data.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">K-Means</span><span class="tool-tag">Scikit-learn</span><span class="tool-tag">Silhouette</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Sentiment Analysis — NLP</h3><p>Built sentiment classifier using TF-IDF, Naive Bayes and Linear SVC on Twitter dataset with 12-plot dashboard.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">NLTK</span><span class="tool-tag">TF-IDF</span><span class="tool-tag">WordCloud</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>House Price Prediction</h3><p>Built Linear, Ridge, and Lasso regression models to predict house prices with 5-fold cross-validation.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Scikit-learn</span><span class="tool-tag">Ridge</span><span class="tool-tag">Lasso</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Wine Quality Prediction</h3><p>Predicted wine quality using Random Forest, SGD, and SVC classifiers on chemical characteristics.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Random Forest</span><span class="tool-tag">SVC</span><span class="tool-tag">SGD</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Credit Card Fraud Detection</h3><p>Detected fraudulent transactions using SMOTE for imbalanced data with Logistic Regression and Random Forest.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">SMOTE</span><span class="tool-tag">Random Forest</span><span class="tool-tag">ROC-AUC</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Google Play Store Analysis</h3><p>Cleaned and analyzed 10K+ apps to uncover category trends, rating distributions, and user sentiment patterns.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">WordCloud</span><span class="tool-tag">Seaborn</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="oasis"><div class="project-header"><span class="project-badge badge-oasis">Oasis Infobyte</span></div><h3>Autocomplete & Autocorrect System</h3><p>Built NLP-based autocomplete using prefix matching and autocorrect using Jaccard similarity on 50K+ words.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">NLTK</span><span class="tool-tag">textdistance</span><span class="tool-tag">NLP</span></div><a href="https://github.com/madhurisama/OIBSIP" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="personal"><div class="project-header"><span class="project-badge badge-personal">Personal</span></div><h3>Crime Data Analysis System</h3><p>Data pipeline to clean 5000+ crime records, surfacing high-risk zones and seasonal patterns with 8+ visualizations.</p><div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">Pandas</span><span class="tool-tag">NumPy</span><span class="tool-tag">Matplotlib</span></div><a href="https://github.com/madhurisama" target="_blank" class="project-link">View on GitHub →</a></div>
-
     <div class="project-card fade-in" data-category="personal"><div class="project-header"><span class="project-badge badge-personal">Personal</span></div><h3>Smart Event Invitation System</h3><p>Responsive multi-page web app with real-time form validation, dynamic UI updates, and zero-reload RSVP flow.</p><div class="project-tools"><span class="tool-tag">HTML5</span><span class="tool-tag">CSS3</span><span class="tool-tag">JavaScript</span><span class="tool-tag">Git</span></div><a href="https://github.com/madhurisama" target="_blank" class="project-link">View on GitHub →</a></div>
   </div>
 </div>
-
-<!-- EXPERIENCE -->
+ 
 <div class="section-wrap" id="experience">
   <p class="section-tag">Where I've Worked</p>
   <h2 class="section-title">Experience</h2>
@@ -449,8 +512,7 @@ footer span{color:var(--purple2)}
     </div>
   </div>
 </div>
-
-<!-- EDUCATION -->
+ 
 <div class="section-wrap" id="education">
   <p class="section-tag">Academic Background</p>
   <h2 class="section-title">Education</h2>
@@ -461,8 +523,7 @@ footer span{color:var(--purple2)}
     <div class="edu-card fade-in"><div><div class="edu-degree">Secondary School Certificate (Class X)</div><div class="edu-school">St. Mark's High School</div><div class="edu-board">SSC Board, Telangana · 2022</div></div><div class="edu-score"><div class="edu-score-num">9.7</div><div class="edu-score-label">GPA</div></div></div>
   </div>
 </div>
-
-<!-- CERTIFICATIONS -->
+ 
 <div class="section-wrap">
   <p class="section-tag">Achievements</p>
   <h2 class="section-title">Certifications & Awards</h2>
@@ -476,8 +537,7 @@ footer span{color:var(--purple2)}
     <div class="cert-card fade-in"><div class="cert-icon">📱</div><div><h4>App Expo Participant — Tech Samprathi 2026</h4><p>NNRG Institutions (National Level) · Feb 2026</p></div></div>
   </div>
 </div>
-
-<!-- LANGUAGES -->
+ 
 <div class="section-wrap">
   <p class="section-tag">Communication</p>
   <h2 class="section-title">Languages</h2>
@@ -488,8 +548,7 @@ footer span{color:var(--purple2)}
     <div class="lang-card"><div class="lang-name">Hindi</div><div class="lang-level">Conversational</div><div class="lang-dots"><span class="lang-dot filled"></span><span class="lang-dot filled"></span><span class="lang-dot filled"></span><span class="lang-dot"></span><span class="lang-dot"></span></div></div>
   </div>
 </div>
-
-<!-- CONTACT -->
+ 
 <div class="section-wrap" id="contact">
   <p class="section-tag">Get In Touch</p>
   <h2 class="section-title">Contact</h2>
@@ -520,12 +579,11 @@ footer span{color:var(--purple2)}
     </div>
   </div>
 </div>
-
+ 
 <footer><p>Designed & Built with 💜 by <span>Sama Madhuri</span> · 2026</p></footer>
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
+ 
 <script>
-// Custom cursor
 const cursor = document.getElementById('cursor');
 const follower = document.getElementById('cursor-follower');
 let mouseX=0,mouseY=0,followerX=0,followerY=0;
@@ -547,8 +605,7 @@ function animateFollower(){
   requestAnimationFrame(animateFollower);
 }
 animateFollower();
-
-// Theme toggle
+ 
 const themeBtn=document.getElementById('theme-btn');
 let isDark=true;
 themeBtn.addEventListener('click',()=>{
@@ -556,8 +613,7 @@ themeBtn.addEventListener('click',()=>{
   document.documentElement.setAttribute('data-theme',isDark?'dark':'light');
   themeBtn.textContent=isDark?'🌙':'☀️';
 });
-
-// Hamburger
+ 
 const hamburger=document.getElementById('hamburger');
 const mobileMenu=document.getElementById('mobile-menu');
 hamburger.addEventListener('click',()=>{
@@ -570,8 +626,7 @@ document.querySelectorAll('.mob-link').forEach(l=>{
     mobileMenu.classList.remove('open');
   });
 });
-
-// Typing animation
+ 
 const roles=['Data Scientist','Data Analyst','Frontend Developer','ML Enthusiast','Problem Solver'];
 let ri=0,ci=0,deleting=false;
 const typingEl=document.getElementById('typing-text');
@@ -589,8 +644,7 @@ function type(){
   setTimeout(type,deleting?60:110);
 }
 type();
-
-// Particles
+ 
 const particlesEl=document.getElementById('particles');
 for(let i=0;i<25;i++){
   const p=document.createElement('div');
@@ -601,8 +655,7 @@ for(let i=0;i<25;i++){
   p.style.width=p.style.height=(2+Math.random()*3)+'px';
   particlesEl.appendChild(p);
 }
-
-// Counter animation
+ 
 function animateCounters(){
   document.querySelectorAll('[data-target]').forEach(el=>{
     const target=+el.getAttribute('data-target');
@@ -616,8 +669,7 @@ function animateCounters(){
   });
 }
 setTimeout(animateCounters,500);
-
-// Skill bars
+ 
 const skillObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -628,8 +680,7 @@ const skillObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.3});
 document.querySelectorAll('.skill-card').forEach(c=>skillObs.observe(c));
-
-// Project filter
+ 
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
@@ -644,14 +695,12 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     });
   });
 });
-
-// Fade in observer
+ 
 const fadeObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
 },{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>fadeObs.observe(el));
-
-// Active nav
+ 
 const sections=document.querySelectorAll('[id]');
 window.addEventListener('scroll',()=>{
   let current='';
@@ -662,13 +711,11 @@ window.addEventListener('scroll',()=>{
     l.classList.remove('active');
     if(l.getAttribute('href')==='#'+current)l.classList.add('active');
   });
-  // Back to top
   const btt=document.getElementById('back-to-top');
   if(window.scrollY>500)btt.classList.add('visible');
   else btt.classList.remove('visible');
 });
-
-// Copy email
+ 
 function copyEmail(e){
   e.preventDefault();e.stopPropagation();
   navigator.clipboard.writeText('madhurisama89@gmail.com');
@@ -677,5 +724,141 @@ function copyEmail(e){
   setTimeout(()=>toast.classList.remove('show'),2500);
 }
 </script>
+ 
+<!-- ================= RAG CHAT WIDGET — MARKUP + SCRIPT ================= -->
+<button id="rag-fab" onclick="ragToggleChat()">
+  <div class="rag-pulse"></div>
+  <svg viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg">
+    <!-- ears: rounded pill shapes, close together, tilted outward slightly -->
+    <rect x="26" y="2" width="20" height="64" rx="10" fill="#fffdfb" transform="rotate(-8 36 34)"/>
+    <rect x="54" y="2" width="20" height="64" rx="10" fill="#fffdfb" transform="rotate(8 64 34)"/>
+    <rect x="30" y="10" width="12" height="48" rx="6" fill="#ffc2d6" transform="rotate(-8 36 34)"/>
+    <rect x="58" y="10" width="12" height="48" rx="6" fill="#ffc2d6" transform="rotate(8 64 34)"/>
+    <!-- fluffy round head -->
+    <ellipse cx="50" cy="70" rx="38" ry="35" fill="#fffdfb"/>
+    <!-- big rounder blush -->
+    <ellipse cx="23" cy="78" rx="9.5" ry="7.5" fill="#ff9dbb" opacity="0.9"/>
+    <ellipse cx="77" cy="78" rx="9.5" ry="7.5" fill="#ff9dbb" opacity="0.9"/>
+    <!-- big glossy eyes -->
+    <ellipse cx="36" cy="68" rx="8" ry="10" fill="#2b2320"/>
+    <ellipse cx="64" cy="68" rx="8" ry="10" fill="#2b2320"/>
+    <circle cx="39.5" cy="62.5" r="3.1" fill="#fff"/>
+    <circle cx="67.5" cy="62.5" r="3.1" fill="#fff"/>
+    <circle cx="33.5" cy="72" r="1.4" fill="#fff" opacity="0.85"/>
+    <circle cx="61.5" cy="72" r="1.4" fill="#fff" opacity="0.85"/>
+    <!-- tiny nose -->
+    <ellipse cx="50" cy="80" rx="3.4" ry="2.5" fill="#f6a8bd"/>
+    <!-- happy smile -->
+    <path d="M50 82.5 Q46 87 41.5 85" stroke="#5a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M50 82.5 Q54 87 58.5 85" stroke="#5a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+</button>
+ 
+<div id="rag-chat-panel">
+  <div class="rag-header">
+    <div class="rag-title">
+      <div class="rag-avatar">
+        <svg viewBox="0 0 100 112" width="26" height="29">
+          <rect x="26" y="2" width="20" height="64" rx="10" fill="#fffdfb" transform="rotate(-8 36 34)"/>
+          <rect x="54" y="2" width="20" height="64" rx="10" fill="#fffdfb" transform="rotate(8 64 34)"/>
+          <rect x="30" y="10" width="12" height="48" rx="6" fill="#ffc2d6" transform="rotate(-8 36 34)"/>
+          <rect x="58" y="10" width="12" height="48" rx="6" fill="#ffc2d6" transform="rotate(8 64 34)"/>
+          <ellipse cx="50" cy="70" rx="38" ry="35" fill="#fffdfb"/>
+          <ellipse cx="23" cy="78" rx="9.5" ry="7.5" fill="#ff9dbb" opacity="0.9"/>
+          <ellipse cx="77" cy="78" rx="9.5" ry="7.5" fill="#ff9dbb" opacity="0.9"/>
+          <ellipse cx="36" cy="68" rx="8" ry="10" fill="#2b2320"/>
+          <ellipse cx="64" cy="68" rx="8" ry="10" fill="#2b2320"/>
+          <circle cx="39.5" cy="62.5" r="3.1" fill="#fff"/>
+          <circle cx="67.5" cy="62.5" r="3.1" fill="#fff"/>
+          <circle cx="33.5" cy="72" r="1.4" fill="#fff" opacity="0.85"/>
+          <circle cx="61.5" cy="72" r="1.4" fill="#fff" opacity="0.85"/>
+          <ellipse cx="50" cy="80" rx="3.4" ry="2.5" fill="#f6a8bd"/>
+          <path d="M50 82.5 Q46 87 41.5 85" stroke="#5a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M50 82.5 Q54 87 58.5 85" stroke="#5a4a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Shiro</h3>
+      </div>
+    </div>
+    <button class="rag-close" onclick="ragToggleChat()">&times;</button>
+  </div>
+ 
+  <div class="rag-messages" id="rag-messages">
+    <div class="rag-msg rag-bot">Hi there! I'm Shiro 🌸 Ask me anything about Madhuri's projects, skills, education, or experience — I'm happy to help! 👇</div>
+  </div>
+ 
+  <div class="rag-suggestions" id="rag-suggestions">
+    <div class="rag-chip" onclick="ragAskSuggestion(this)">What is her CGPA?</div>
+    <div class="rag-chip" onclick="ragAskSuggestion(this)">Clustering project?</div>
+    <div class="rag-chip" onclick="ragAskSuggestion(this)">How to contact her?</div>
+  </div>
+ 
+  <div class="rag-input-row">
+    <input type="text" id="rag-input" placeholder="Ask a question..." onkeypress="if(event.key==='Enter') ragSendMessage()" />
+    <button id="rag-send-btn" onclick="ragSendMessage()">Send</button>
+  </div>
+</div>
+ 
+<script>
+  // Change this to your deployed API URL once live (e.g. https://your-app.onrender.com/ask)
+  const RAG_API_URL = "http://127.0.0.1:8000/ask";
+ 
+  function ragToggleChat() {
+    const panel = document.getElementById("rag-chat-panel");
+    panel.classList.toggle("rag-open");
+  }
+ 
+  function ragAddMessage(text, sender) {
+    const messages = document.getElementById("rag-messages");
+    const div = document.createElement("div");
+    div.className = "rag-msg rag-" + sender;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+ 
+  function ragAskSuggestion(el) {
+    document.getElementById("rag-input").value = el.textContent;
+    ragSendMessage();
+  }
+ 
+  async function ragSendMessage() {
+    const input = document.getElementById("rag-input");
+    const sendBtn = document.getElementById("rag-send-btn");
+    const question = input.value.trim();
+    if (!question) return;
+ 
+    ragAddMessage(question, "user");
+    input.value = "";
+    sendBtn.disabled = true;
+ 
+    const typingDiv = ragAddMessage("Thinking...", "typing");
+ 
+    try {
+      const response = await fetch(RAG_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: question })
+      });
+ 
+      if (!response.ok) throw new Error("Server error: " + response.status);
+ 
+      const data = await response.json();
+      typingDiv.remove();
+      ragAddMessage(data.answer, "bot");
+    } catch (err) {
+      typingDiv.remove();
+      ragAddMessage("Sorry, I couldn't reach the server. Please try again later.", "bot");
+      console.error(err);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+</script>
+<!-- ================= END RAG CHAT WIDGET ================= -->
+ 
 </body>
 </html>
+ 
