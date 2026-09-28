@@ -802,22 +802,34 @@ function copyEmail(e){
  
 <script>
   // Change this to your deployed API URL once live (e.g. https://your-app.onrender.com/ask)
-  const RAG_API_URL = "http://127.0.0.1:8000/ask";
+  const RAG_API_URL = "https://portfolio-rag-api-q7tj.onrender.com";
  
   function ragToggleChat() {
     const panel = document.getElementById("rag-chat-panel");
     panel.classList.toggle("rag-open");
   }
  
-  function ragAddMessage(text, sender) {
-    const messages = document.getElementById("rag-messages");
-    const div = document.createElement("div");
-    div.className = "rag-msg rag-" + sender;
+ function ragFormat(text) {
+  // escape HTML first (safe), then turn **bold** and bullets into clean text
+  const esc = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return esc
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/^\s*[\*\-]\s+/gm, "• ");
+}
+
+function ragAddMessage(text, sender) {
+  const messages = document.getElementById("rag-messages");
+  const div = document.createElement("div");
+  div.className = "rag-msg rag-" + sender;
+  if (sender === "bot") {
+    div.innerHTML = ragFormat(text);
+  } else {
     div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-    return div;
   }
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
  
   function ragAskSuggestion(el) {
     document.getElementById("rag-input").value = el.textContent;
@@ -835,6 +847,9 @@ function copyEmail(e){
     sendBtn.disabled = true;
  
     const typingDiv = ragAddMessage("Thinking...", "typing");
+    const wakeTimer = setTimeout(() => {
+  typingDiv.textContent = "Waking up, one moment... 🐰";
+}, 6000);
  
     try {
       const response = await fetch(RAG_API_URL, {
@@ -852,13 +867,15 @@ function copyEmail(e){
       typingDiv.remove();
       ragAddMessage("Sorry, I couldn't reach the server. Please try again later.", "bot");
       console.error(err);
-    } finally {
-      sendBtn.disabled = false;
-    }
+   } finally {
+  clearTimeout(wakeTimer);
+  sendBtn.disabled = false;
+}
   }
 </script>
 <!-- ================= END RAG CHAT WIDGET ================= -->
  
 </body>
 </html>
+ 
  
