@@ -796,7 +796,7 @@ function copyEmail(e){
         </svg>
       </div>
       <div>
-        <h3>Shiro</h3>
+        <h3>Shiro <span style="font-size:10px;font-weight:400;opacity:.75">v3</span></h3>
       </div>
     </div>
     <button class="rag-close" onclick="ragToggleChat()">&times;</button>
@@ -852,20 +852,30 @@ function ragAddMessage(text, sender) {
 }
 
 async function ragFetchAnswer(question) {
-  for (let attempt = 0; attempt < 3; attempt++) {
+  const MAX_ATTEMPTS = 6;
+  let lastErr;
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 30000);
     try {
       const response = await fetch(RAG_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: question })
+        body: JSON.stringify({ question: question }),
+        signal: controller.signal
       });
-      if (!response.ok) throw new Error("Server error: " + response.status);
+      clearTimeout(timer);
+      if (!response.ok) throw new Error("Server error " + response.status);
       return await response.json();
     } catch (err) {
-      if (attempt === 2) throw err;
-      await new Promise(r => setTimeout(r, 8000)); // wait for the server to wake, then retry
+      clearTimeout(timer);
+      lastErr = err;
+      if (attempt < MAX_ATTEMPTS - 1) {
+        await new Promise(r => setTimeout(r, 5000)); // server may still be waking up
+      }
     }
   }
+  throw lastErr;
 }
 
 async function ragSendMessage(override) {
@@ -882,6 +892,9 @@ async function ragSendMessage(override) {
   const wakeTimer = setTimeout(() => {
     typingDiv.textContent = "Waking up, one moment... 🐰";
   }, 6000);
+  const wakeTimer2 = setTimeout(() => {
+    typingDiv.textContent = "Almost there, still waking up... 🐰";
+  }, 25000);
 
   try {
     const data = await ragFetchAnswer(question);
@@ -889,10 +902,11 @@ async function ragSendMessage(override) {
     ragAddMessage(data.answer, "bot");
   } catch (err) {
     typingDiv.remove();
-    ragAddMessage("Sorry, I couldn't reach the server. Please try again in a moment.", "bot");
+    ragAddMessage("Sorry, I couldn't reach the server (" + (err && err.message ? err.message : "network error") + "). Please try again in a minute.", "bot");
     console.error(err);
   } finally {
     clearTimeout(wakeTimer);
+    clearTimeout(wakeTimer2);
     sendBtn.disabled = false;
   }
 }
