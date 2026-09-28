@@ -301,18 +301,24 @@ footer span{color:var(--purple2)}
   html[data-theme="light"] .rag-msg.rag-typing { background: var(--rag-bubble-light); color: var(--rag-text-light); }
   html[data-theme="light"] .rag-input-row input { background: #f4f2fb; color: var(--rag-text-light); border-color: #d8cdf7; }
   html[data-theme="light"] .rag-input-row input::placeholder { color: #9a8fc0; }
+  button.rag-chip { font-family: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .rag-input-row button, #rag-fab { touch-action: manipulation; }
   @media (max-width: 480px) {
-  #rag-chat-panel {
-    left: 10px;
-    right: 10px;
-    width: auto;
-    max-width: none;
-    bottom: 100px;
-    height: 65vh;
+    #rag-chat-panel {
+      left: 10px;
+      right: 10px;
+      width: auto;
+      max-width: none;
+      bottom: 96px;
+      height: 65vh;
+      height: min(65dvh, 520px);
+      max-height: calc(100dvh - 120px);
+    }
+    #rag-fab { right: 12px; bottom: 14px; }
+    .rag-input-row input { font-size: 16px; }
+    .rag-chip { font-size: 12px; padding: 7px 12px; }
+    .back-to-top { bottom: 96px; right: 16px; }
   }
-  #rag-fab { right: 12px; bottom: 14px; }
-  .rag-input-row input { font-size: 16px; }
-}
 </style>
 <!-- ================= END RAG CHAT WIDGET HEAD CSS ================= -->
  
@@ -801,13 +807,13 @@ function copyEmail(e){
   </div>
  
   <div class="rag-suggestions" id="rag-suggestions">
-    <div class="rag-chip" onclick="ragAskSuggestion(this)">What is her CGPA?</div>
-    <div class="rag-chip" onclick="ragAskSuggestion(this)">Clustering project?</div>
-    <div class="rag-chip" onclick="ragAskSuggestion(this)">How to contact her?</div>
+    <button type="button" class="rag-chip" data-q="What is her CGPA?">What is her CGPA?</button>
+    <button type="button" class="rag-chip" data-q="What clustering project has she done?">Clustering project?</button>
+    <button type="button" class="rag-chip" data-q="How can I contact her?">How to contact her?</button>
   </div>
  
   <div class="rag-input-row">
-    <input type="text" id="rag-input" placeholder="Ask a question..." onkeypress="if(event.key==='Enter') ragSendMessage()" />
+    <input type="text" id="rag-input" placeholder="Ask a question..." autocomplete="off" enterkeyhint="send" onkeydown="if(event.key==='Enter'){event.preventDefault();ragSendMessage();}" />
     <button id="rag-send-btn" onclick="ragSendMessage()">Send</button>
   </div>
 </div>
@@ -862,10 +868,10 @@ async function ragFetchAnswer(question) {
   }
 }
 
-async function ragSendMessage() {
+async function ragSendMessage(override) {
   const input = document.getElementById("rag-input");
   const sendBtn = document.getElementById("rag-send-btn");
-  const question = input.value.trim();
+  const question = (typeof override === "string" ? override : input.value).trim();
   if (!question) return;
 
   ragAddMessage(question, "user");
@@ -890,7 +896,12 @@ async function ragSendMessage() {
     sendBtn.disabled = false;
   }
 }
-  
+
+// Suggestion chips (works on touch + desktop)
+document.getElementById("rag-suggestions").addEventListener("click", function (e) {
+  const chip = e.target.closest(".rag-chip");
+  if (chip) ragSendMessage(chip.dataset.q);
+});
 </script>
 <!-- ================= END RAG CHAT WIDGET ================= -->
  
