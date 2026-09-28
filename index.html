@@ -301,6 +301,18 @@ footer span{color:var(--purple2)}
   html[data-theme="light"] .rag-msg.rag-typing { background: var(--rag-bubble-light); color: var(--rag-text-light); }
   html[data-theme="light"] .rag-input-row input { background: #f4f2fb; color: var(--rag-text-light); border-color: #d8cdf7; }
   html[data-theme="light"] .rag-input-row input::placeholder { color: #9a8fc0; }
+  @media (max-width: 480px) {
+  #rag-chat-panel {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: none;
+    bottom: 100px;
+    height: 65vh;
+  }
+  #rag-fab { right: 12px; bottom: 14px; }
+  .rag-input-row input { font-size: 16px; }
+}
 </style>
 <!-- ================= END RAG CHAT WIDGET HEAD CSS ================= -->
  
@@ -809,8 +821,10 @@ function copyEmail(e){
     panel.classList.toggle("rag-open");
   }
  
- function ragFormat(text) {
-  // escape HTML first (safe), then turn **bold** and bullets into clean text
+ // Wake the free server as soon as the page loads
+fetch("https://portfolio-rag-api-q7tj.onrender.com/", { mode: "no-cors" }).catch(() => {});
+
+function ragFormat(text) {
   const esc = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   return esc
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
@@ -830,52 +844,58 @@ function ragAddMessage(text, sender) {
   messages.scrollTop = messages.scrollHeight;
   return div;
 }
- 
-  function ragAskSuggestion(el) {
-    document.getElementById("rag-input").value = el.textContent;
-    ragSendMessage();
-  }
- 
-  async function ragSendMessage() {
-    const input = document.getElementById("rag-input");
-    const sendBtn = document.getElementById("rag-send-btn");
-    const question = input.value.trim();
-    if (!question) return;
- 
-    ragAddMessage(question, "user");
-    input.value = "";
-    sendBtn.disabled = true;
- 
-    const typingDiv = ragAddMessage("Thinking...", "typing");
-    const wakeTimer = setTimeout(() => {
-  typingDiv.textContent = "Waking up, one moment... 🐰";
-}, 6000);
- 
+
+async function ragFetchAnswer(question) {
+  for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const response = await fetch(RAG_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: question })
       });
- 
       if (!response.ok) throw new Error("Server error: " + response.status);
- 
-      const data = await response.json();
-      typingDiv.remove();
-      ragAddMessage(data.answer, "bot");
+      return await response.json();
     } catch (err) {
-      typingDiv.remove();
-      ragAddMessage("Sorry, I couldn't reach the server. Please try again later.", "bot");
-      console.error(err);
-   } finally {
-  clearTimeout(wakeTimer);
-  sendBtn.disabled = false;
-}
+      if (attempt === 2) throw err;
+      await new Promise(r => setTimeout(r, 8000)); // wait for the server to wake, then retry
+    }
   }
+}
+
+async function ragSendMessage() {
+  const input = document.getElementById("rag-input");
+  const sendBtn = document.getElementById("rag-send-btn");
+  const question = input.value.trim();
+  if (!question) return;
+
+  ragAddMessage(question, "user");
+  input.value = "";
+  sendBtn.disabled = true;
+
+  const typingDiv = ragAddMessage("Thinking...", "typing");
+  const wakeTimer = setTimeout(() => {
+    typingDiv.textContent = "Waking up, one moment... 🐰";
+  }, 6000);
+
+  try {
+    const data = await ragFetchAnswer(question);
+    typingDiv.remove();
+    ragAddMessage(data.answer, "bot");
+  } catch (err) {
+    typingDiv.remove();
+    ragAddMessage("Sorry, I couldn't reach the server. Please try again in a moment.", "bot");
+    console.error(err);
+  } finally {
+    clearTimeout(wakeTimer);
+    sendBtn.disabled = false;
+  }
+}
+  
 </script>
 <!-- ================= END RAG CHAT WIDGET ================= -->
  
 </body>
 </html>
+ 
  
  
