@@ -852,112 +852,78 @@ function ragAddMessage(text, sender) {
 }
 
 async function ragFetchAnswer(question) {
-  const MAX_ATTEMPTS = 3;
-  const REQUEST_TIMEOUT = 25000;
-  const RETRY_DELAY = 4000;
-
+  const MAX_ATTEMPTS = 6;
   let lastErr;
-
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
-
+    const timer = setTimeout(() => controller.abort(), 30000);
     try {
       const response = await fetch(RAG_API_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          question: question
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: question }),
         signal: controller.signal
       });
-
       clearTimeout(timer);
-
-      if (!response.ok) {
-        throw new Error("Server error " + response.status);
-      }
-
+      if (!response.ok) throw new Error("Server error " + response.status);
       return await response.json();
-
     } catch (err) {
       clearTimeout(timer);
       lastErr = err;
-
       if (attempt < MAX_ATTEMPTS - 1) {
-        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+        await new Promise(r => setTimeout(r, 5000)); // server may still be waking up
       }
     }
   }
-
   throw lastErr;
 }
-
 
 async function ragSendMessage(override) {
   const input = document.getElementById("rag-input");
   const sendBtn = document.getElementById("rag-send-btn");
-
-  const question =
-    (typeof override === "string" ? override : input.value).trim();
-
+  const question = (typeof override === "string" ? override : input.value).trim();
   if (!question) return;
 
-  // Add user's message
   ragAddMessage(question, "user");
   input.value = "";
   sendBtn.disabled = true;
 
-  // Shiro's loading message
-  const typingDiv = ragAddMessage("Thinking... 💭", "typing");
-
-  // Natural progress messages
-  const loadingTimer1 = setTimeout(() => {
-    if (typingDiv) {
-      typingDiv.textContent = "Shiro is waking up... 🌸";
-    }
-  }, 5000);
-
-  const loadingTimer2 = setTimeout(() => {
-    if (typingDiv) {
-      typingDiv.textContent = "Just a moment... ☕";
-    }
-  }, 15000);
+  const typingDiv = ragAddMessage("Thinking...", "typing");
+  const wakeTimer = setTimeout(() => {
+    typingDiv.textContent = "Waking up, one moment... 🐰";
+  }, 6000);
+  const wakeTimer2 = setTimeout(() => {
+    typingDiv.textContent = "Almost there, still waking up... 🐰";
+  }, 25000);
 
   try {
     const data = await ragFetchAnswer(question);
-
-    // Remove loading message
     typingDiv.remove();
-
-    // Show answer
-    if (data && data.answer) {
-      ragAddMessage(data.answer, "bot");
-    } else {
-      ragAddMessage(
-        "I couldn't find a clear answer to that in Madhuri's portfolio.",
-        "bot"
-      );
-    }
-
+    ragAddMessage(data.answer, "bot");
   } catch (err) {
     typingDiv.remove();
-
-    console.error("Shiro connection error:", err);
-
-    ragAddMessage(
-      "I’m having a little trouble connecting right now. Please try again in a moment. 🌸",
-      "bot"
-    );
-
+    ragAddMessage("Sorry, I couldn't reach the server (" + (err && err.message ? err.message : "network error") + "). Please try again in a minute.", "bot");
+    console.error(err);
   } finally {
-    clearTimeout(loadingTimer1);
-    clearTimeout(loadingTimer2);
+    clearTimeout(wakeTimer);
+    clearTimeout(wakeTimer2);
     sendBtn.disabled = false;
   }
 }
+
+// Suggestion chips (works on touch + desktop)
+// Suggestion chips
+document.getElementById("rag-suggestions").addEventListener("click", function (e) {
+  const chip = e.target.closest(".rag-chip");
+
+  if (!chip) return;
+
+  const question = chip.getAttribute("data-q");
+
+  if (!question) return;
+
+  ragSendMessage(question);
+});
 </script>
 <!-- ================= END RAG CHAT WIDGET ================= -->
  
